@@ -1,0 +1,259 @@
+<div class="row"  >
+  <div class="col-md-12">
+     <div class="card">
+        <div class="card-header ">
+           Add  14 Days Services
+        </div>
+        <div class="card-body">
+           <form  name ="addserviceform" #addserviceform="ngForm" (ngSubmit)="adduserformsubmit()">
+           <div class="form-group row">
+              <div class="  col-md-6">
+                 <div class="input-group">
+                    <div class="input-prepend input-group">
+                       <span class="input-group-text">Seqno</span>
+                       <input type="number" class="form-control" placeholder="seqno" autocomplete="seqno" name="seqno"  [class.is-invalid]="seqno.invalid && seqno.touched"  [(ngModel)]="days14.seqno" required #seqno="ngModel" >
+                    </div>
+                    <div class="text-danger" *ngIf="seqno.errors && (seqno.invalid && seqno.touched)">
+                       <div class="text-danger" *ngIf ="seqno.errors?.required"> Seqno is required.</div>
+                    </div>
+                 </div>
+              </div>
+              <div class=" col-md-6">
+                 <div class="input-group">
+                    <div class="input-prepend input-group"> 
+                       <span class="input-group-text">Trade</span>
+                       <input type="text" class="form-control" placeholder="trade" ngModel #trade="ngModel" [class.is-invalid]="trade.invalid && trade.touched"  [(ngModel)]="days14.trade"name="trade"  required  >
+                    </div>
+                    <div class="text-danger" *ngIf="trade.errors && (trade.invalid && trade.touched)">
+                       <div class="text-danger" *ngIf ="trade.errors?.required"> Trade is required.</div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="form-group row">
+              <div class=" col-md-6">
+                 <div class="input-prepend input-group">
+                    <div class="input-group">
+                       <span class="input-group-text">Smrd no</span>
+                       <input type="text"  class="form-control"  placeholder="smrdno" name="smrdno" [(ngModel)]="days14.smrdno" required ngModel [class.is-invalid]="smrdno.invalid && smrdno.touched"  #smrdno="ngModel" >
+                    </div>
+                    <div class="text-danger" *ngIf="smrdno.errors && (smrdno.invalid && smrdno.touched)">
+                       <div class="text-danger" *ngIf ="smrdno.errors?.required"> Smrd No is required.</div>
+                    </div>
+                 </div>
+              </div>
+              <div class=" col-md-6">
+                 <div class="input-group">
+                    <div class="input-prepend input-group"> 
+                       <span class="input-group-text">Ammtc no</span>
+                       <input type="text" class="form-control" placeholder="ammtcno" autocomplete="ammtcno" name="ammtcno" [(ngModel)]="days14.ammtcno" required [class.is-invalid]="ammtcno.invalid && ammtcno.touched"   #ammtcno="ngModel"
+                       >
+                    </div>
+                    <div class="text-danger" *ngIf="ammtcno.errors && (ammtcno.invalid && ammtcno.touched)">
+                       <div class="text-danger" *ngIf ="ammtcno.errors?.required"> Ammt No is required.</div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="form-group row">
+              <div class=" col-md-6">
+                 <div class="input-group">
+                    <div class="input-prepend input-group"> 
+                       <span class="input-group-text">Type</span>
+                       <input type="text" class="form-control" placeholder="type" autocomplete="type" name="type" [(ngModel)]="days14.type" required [class.is-invalid]="type.invalid && type.touched"   #type="ngModel"
+                       >
+                    </div>
+                    <div class="text-danger" *ngIf="type.errors && (type.invalid && type.touched)">
+                       <div class="text-danger" *ngIf ="type.errors?.required"> Type is required.</div>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-prepend input-group"> 
+                       <span class="input-group-text">Cat</span>
+                       <input type="text" class="form-control" placeholder="cat" autocomplete="cat" name="cat" [class.is-invalid]="cat.invalid && cat.touched"   #cat="ngModel"
+                       [(ngModel)]="days14.cat" required >
+                    </div>
+                    <div class="text-danger" *ngIf="cat.errors && (cat.invalid && cat.touched)">
+                       <div class="text-danger" *ngIf ="cat.errors?.required"> Cat is required.</div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="form-group row">
+              <div class=" col-md-6">
+                 <div class="input-group">
+                    <div class="input-prepend input-group"> 
+                       <span class="input-group-text">Effectivity</span>
+                       <input type="text"  class="form-control"  placeholder="effectivity" name="effectivity" [(ngModel)]="days14.effectivity" [class.is-invalid]="effectivity.invalid && effectivity.touched"   required ngModel #effectivity="ngModel" >
+                    </div>
+                    <div class="text-danger" *ngIf="effectivity.errors && (effectivity.invalid && effectivity.touched)">
+                       <div class="text-danger" *ngIf ="effectivity.errors?.required"> Effectivity is required.</div>
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <span class="input-group-text">Description</span>
+                    <input type="text" class="form-control" placeholder="description" autocomplete="description" name="description" [(ngModel)]="days14.description"  >
+                 </div>
+              </div>
+           </div>
+           <div class="row">
+              <div class="simple">
+                 <tabset >
+                    <tab class ="excel-table" heading="GSE" id="isgse" index=0 (click)="gseselected()" >
+                       <div *ngIf="((isgse == true) );then gsepart;">
+                       </div>
+                       <ng-template #gsepart>
+                          <table class="table table-sm">
+                             <thead>
+                                <tr>
+                                   <th>Select</th>
+                                   <th>Sno </th>
+                                   <th>Gse-no </th>
+                                   <th>Port-no</th>
+                                   <th>Oem</th>
+                                   <th>Description</th>
+                                </tr>
+                             </thead>
+                             <tbody>
+                                <tr *ngFor ="let u of datagse"  [class.bg-secondary]='nam2.indexOf(u.idgse)>-1'>
+                                <!-- <td *ngFor="let u1 of nam2"> -->
+                                <div *ngIf="(nam2.indexOf(u.idgse)>-1);then truepart;else falsepart;">  
+                                </div>
+                                <!-- </td>  -->
+                                <ng-template #truepart>
+                                   <input type="checkbox"  id="myCheck" checked="true"  (click)="function1($event,u.idgse)"  >
+                                </ng-template>
+                                <ng-template #falsepart>
+                                   <input type="checkbox"  id="myCheck" (click)="function1($event,u.idgse)">
+                                </ng-template>
+                                <td>{{u.sno }}</td>
+                                <td> {{u.gseno}}</td>
+                                <td>{{u.portno}}</td>
+                                <td>{{u.gdm}}</td>
+                                <td>{{u.description}}</td>
+                                </tr> 
+                          </table>
+                       </ng-template>
+                    </tab>
+                    <tab class="excel-table" heading="SPARE" id="isspare" index=1 (click)="spareselected()">
+                       <div *ngIf="(isspare == true);then sparepart;">
+                       </div>
+                       <ng-template #sparepart>
+                          <table class="table table-sm">
+                             <thead>
+                                <tr>
+                                   <th>Select</th>
+                                   <th>Sno </th>
+                                   <th>Part-no</th>
+                                   <th>Oem</th>
+                                   <th>Description</th>
+                                </tr>
+                             </thead>
+                             <tbody>
+                                <tr *ngFor ="let u1 of dataspare" [class.bg-secondary]="nam3.indexOf(u1.idspare)>-1">
+                                <!-- <td *ngFor="let u1 of nam2"> -->
+                                <div *ngIf="(nam3.indexOf(u1.idspare)>-1);then truepart;else falsepart;">  
+                                </div>
+                                <!-- </td>  -->
+                                <ng-template #truepart>
+                                   <input type="checkbox"  id="myCheck1" checked="true"  (click)="function2($event,u1.idspare)">
+                                </ng-template>
+                                <ng-template #falsepart>
+                                   <input type="checkbox"  id="myCheck1"  (click)="function2($event,u1.idspare)">
+                                </ng-template>
+                                <td>{{u1.seqno }}</td>
+                                <td>{{u1.partno}}</td>
+                                <td>{{u1.oem}}</td>
+                                <td>{{u1.description}}</td>
+                                </tr> 
+                          </table>
+                       </ng-template>
+                    </tab>
+                    <tab class="excel-table"   heading="TOOLS" id="istools" index=2 (click)="toolsselected()"(select)="toolschanged()">
+                    <div *ngIf="(istools == true);then toolspart;">
+                    </div>
+                    <ng-template #toolspart>
+                       <table class="table table-sm">
+                          <thead>
+                             <tr>
+                                <th>Select</th>
+                                <th>Sno </th>
+                                <th>Part-no</th>
+                                <th>Tools_no</th>
+                                <th>Oem</th>
+                                <th>Description</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr *ngFor ="let u1 of datatools" [class.bg-secondary]="nam4.indexOf(u1.idtools)>-1">
+                             <!-- <td *ngFor="let u1 of nam2"> -->
+                             <div *ngIf="(nam4.indexOf(u1.idtools)>-1);then truepart;else falsepart;">  
+                             </div>
+                             <!-- </td>  -->
+                             <ng-template #truepart>
+                                <input type="checkbox"  id="myCheck1" checked="true"  (click)="function3($event,u1.idtools)">
+                             </ng-template>
+                             <ng-template #falsepart>
+                                <input type="checkbox"  id="myCheck1"  (click)="function3($event,u1.idtools)">
+                             </ng-template>
+                             <td>{{u1.sno }}</td>
+                             <td>{{u1.partno}}</td>
+                             <td>{{u1.toolsno}}</td>
+                             <td>{{u1.gdm}}</td>
+                             <td>{{u1.description}}</td>
+                             </tr> 
+                       </table>
+                    </ng-template>
+                    </tab>
+                    <tab class="excel-table"   heading="CONSUMABLE" id="isConsumable" index=3 (click)="consumableselected()"(select)="consumablechanged()">
+                    <div *ngIf="(isconsumable == true);then consumablepart;">
+                    </div>
+                    <ng-template #consumablepart>
+                       <table class="table table-sm">
+                          <thead>
+                             <tr>
+                                <th>Select</th>
+                                <th>Sno </th>
+                                <th>Part-no</th>
+                                <th>consumable_no</th>
+                                <th>Oem</th>
+                                <th>Description</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             <tr *ngFor ="let u1 of dataconsumable" [class.bg-secondary]='nam5.indexOf(u1.idconsumable)>-1'>
+                             <!-- <td *ngFor="let u1 of nam2"> -->
+                             <div *ngIf="(nam5.indexOf(u1.idconsumable)>-1);then truepart;else falsepart;">  
+                             </div>
+                             <!-- </td>  -->
+                             <ng-template #truepart>
+                                <input type="checkbox"  id="myCheck1" checked="true"  (click)="function4($event,u1.idconsumable)">
+                             </ng-template>
+                             <ng-template #falsepart>
+                                <input type="checkbox"  id="myCheck1"  (click)="function4($event,u1.idconsumable)">
+                             </ng-template>
+                             <td>{{u1.sno }}</td>
+                             <td>{{u1.partno}}</td>
+                             <td>{{u1.consumableno}}</td>
+                             <td>{{u1.oem}}</td>
+                             <td>{{u1.description}}</td>
+                             </tr> 
+                       </table>
+                    </ng-template>
+                    </tab>
+                 </tabset>
+              </div>
+           </div>
+           <!-- !--form--end--! -->
+           </form>
+        </div>
+        <div class="card-footer">
+           <button type="button" class="btn btn-sm btn-primary"(click)="adduserformsubmit()"  [disabled] = '!addserviceform.valid'>Submit</button>
+        </div>
+     </div>
+  </div>
+</div>

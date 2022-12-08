@@ -1,0 +1,64 @@
+
+<!-- <div class="form-group row">
+    <label class="col-md-3 col-form-label" for="select1">Rows per Page</label>
+    <div class="col-md-9">
+      <select style='width:100px' id="select1" [(value)] ="text" name="select1" #name  class="form-control" (change)="onupdate(name.value)">
+        <option value="0">Please select</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+      </select>
+    </div>
+    <button type="button"  (click)="onclick()">Save</button>
+
+  </div> -->
+
+  <div class="app-body">
+    <main class="main d-flex align-items-center">
+      <div class="container">
+        <br><br><br><br><br><br>
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <div class="card mx-4">
+             
+              <div class="card-body p-4">
+               
+                  <span class ="text-info"></span>
+                  <div *ngIf="alert1" class="alert-success alert-dismissible fade show" role="alert">
+                    <strong>Well done!</strong> You Changed Successfully !.
+                    <button (click)="closealert()"type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <h1 > {{mess1}} </h1>
+                  <p class="text-muted">Change your Settings</p>
+                  
+                 
+                  <div class="controls">
+                    <div class="input-prepend input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">Rows per page</span>
+                       </div>
+                       <select style='width:100px'  id="select1" value =""   name="select1" #name  class="form-control" (change)="onupdate(name.value)"  required>
+                        <option   value="" selected hidden  >{{myrowpp}}</option>
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                         
+                  <br>
+                <button type="button" (click)="onclick()" class="btn btn-primary"[ng2-loading]="show"  [config]="loadingConfig">Save</button>
+                <button type="button" (click)="cancel()" class="btn btn-primary"[ng2-loading]="show"  [config]="loadingConfig">cancel</button>
+               
+  </div>
+  
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div> 
+  

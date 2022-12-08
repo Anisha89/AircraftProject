@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <strong>Service-History Details</strong> 
+        </div>
+         <br>
+     <div class="card-body">
+          <form name="editservicehistoryform"#editservicehistoryform="ngForm" (ngSubmit)="adduserformsubmit()">
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="text-input">S.no</label>
+          <div>
+            <input type="text" readonly class="form-control"  placeholder="sno" name="sno" [(ngModel)]="schedule.sno" required ngModel #sno="ngModel" > 
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="service-input">Service</label>
+          <div>
+            <input type="text" readonly class="form-control" placeholder="service" autocomplete="service" name="service" [(ngModel)]="schedule.service" required >
+                
+          </div>
+        </div>
+
+        <!-- <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="servicedue-input">Service Due</label>
+          <div>
+            <input type="date"  readonly class="form-control" placeholder="servicedue"  name="servicedue" [(ngModel)]="schedule.servicedue" ngModel #servicedue="ngModel" required >
+                  
+          </div>
+        </div> -->
+        
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="lastservice-input">last Service</label>
+          <div>
+            <input type="date"  readonly class="form-control" placeholder="lastservice"  name="lastservice" [(ngModel)]="schedule.str_lastservice" ngModel #servicedue="ngModel" required >
+                  
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="lastservice-input">Alert Days</label>
+          <div>
+            <input type="text" class="form-control" readonly  placeholder="alert" ngModel #alert="ngModel"  [(ngModel)]="schedule.alert"name="alert"  required  >
+                    
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="lastservice-input">Completed Service</label>
+          <div>
+            <input type="text" class="form-control" readonly  placeholder="completedservice"  name="servicecompleted" [(ngModel)]="schedule.servicecompleted" ngModel #servicecompleted="ngModel" required >
+                  
+          </div>
+        </div>
+
+        
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="servicedue-input">Start Date</label>
+          <div>
+            <input type="date" [disabled]=this.schedule.startdate class="form-control" readonly  placeholder="startdate"  name="startdate" [(ngModel)]="schedule.str_startdate" ngModel #servicedue="ngModel" required >
+                     
+          </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="lastservice-input">Status</label>
+            <div>
+                <input type="text" class="form-control" readonly  placeholder="status"  name="status" [(ngModel)]="schedule.status" ngModel #status="ngModel" required >
+            </div>
+          </div>
+       
+
+       <!--  <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="inline-radios">Status</label>
+          <div class="col-md-9 col-form-label">
+            <div class="form-check form-check-inline mr-1" id="inline-radios">
+              <input type="radio"readonly id="myradio"name="myradio" value="Not Started" [checked]="this.schedule.status=='Not Started'?true:false" [disabled]="this.schedule.status=='Progress'||this.schedule.status=='Completed'?true:false" (change)="selectChangeHandler2($event)" >Not Started&nbsp;
+            </div>
+            <div class="form-check form-check-inline mr-1">
+              <input type="radio"readonly  id="myradio" name="myradio" value="Progress" [checked]="this.schedule.status=='Progress'?true:false"  (change)="selectChangeHandler($event)" > Progress&nbsp;
+            </div>
+            <div class="form-check form-check-inline mr-1">
+              <input type="radio"readonly  id="myradio" name="myradio" value="Completed" [checked]="" [disabled]="this.schedule.status=='Not Started'||this.schedule.status=='Completed'" (click)="toogle()" (change)="selectChangeHandler($event)" (change)="selectnextservice($event)">Completed&nbsp;  
+            </div>
+          </div>
+        </div> -->
+        <!-- <div  *ngIf="showme"> -->
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="lastservice-input">End Date</label>
+          <div>
+            <input type="date"   class="form-control" readonly  placeholder="enddate"  name="enddate" [(ngModel)]="schedule.str_enddate" (change)="selectChangeHandler1($event)" (change)="selectservicedue($event)" ngModel #servicedue="ngModel" required >
+                  
+          </div>
+        </div>
+        
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="lastservice-input">Next Service</label>
+          <div>
+            <input type="text" readonly class="form-control"  ngModel #nextservice="ngModel"  [(ngModel)]="schedule.str_nextservice"    name="nextservice"  required  >
+        </div>
+        </div>
+      
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="textarea-input">Concessionnates</label>
+          <div>
+            <textarea  id="textarea-input" readonly  name="textarea-input" rows="6"style="width:400px" class="form-control" placeholder="Concessionnates"[(ngModel)]="schedule.concessionnates" ngModel #concessionnates="ngModel" required></textarea>
+          </div>
+        </div> 
+      </form>
+
+      <div class="card-footer">
+      
+           
+        <!-- <button type="button"[ng2-loading]="show" [config]="loadingConfig"(click)="adduserformsubmit()" (click)="goback()" class="btn btn-sm btn-primary">Back</button> -->
+      <button type="button" class="btn btn-sm btn-primary" (click)="goback()">OK</button> 
+      </div>
+    </div>
+                   
+</div>

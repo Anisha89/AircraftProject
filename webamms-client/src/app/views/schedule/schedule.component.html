@@ -1,0 +1,73 @@
+<div class="animated fadeIn">
+  <div class="row">
+     <div class="col-md-12">
+        <div class="card">
+           <div class="card-header bg-white " style="border:none;">
+              <div class="d-flex justify-content-between">
+                 <div class="d-flex">
+                  <div class="ml-3 mt-2">  <button class="btn btn-primary" type="button"(click)="gotoaddaccount()"  *ngIf="addshowbutton" >New</button>
+                    </div>
+                 </div>
+                 <div class="d-flex">
+                    <div class="mr-2 mt-2">
+                       <span>Aircraft:</span>
+                    </div>
+                    <div>
+                       <select style='margin-right: auto;' id="aircraft"  [(ngModel)]='nrSelect' name="saircraft" #aircraft class="form-control" (change)="selectChangeHandler3($event)" >
+                       <option  *ngFor ="let array of aircraft1" [value]="array.aircraft">{{array.aircraft}}</option>
+                       </select>
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <div class="card-body" >
+              <table class="table table-sm">
+                 <thead>
+                    <tr >
+                       <th>S.No </th>
+                       <th>Service</th>
+                       <th>Service_Due</th>
+                       <th>Status</th>
+                       <th>Start_Date</th>
+                       <th>End_Date</th>
+                       <th>Last_Service</th>
+                       <th>Alert_Days</th>
+                       <th>Service_Completed</th>
+                       <th>Concessionnates</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <div *ngIf="(isgreen);then greenpart;"></div>
+                    <ng-template #greenpart>
+                       <tr class={{u.color}} *ngFor ="let u of data" >
+                          <td >{{u.sno}}</td>
+                          <td >
+                             <div *ngIf="(rolltext=='regular')||(rolltext=='admin')||(rolltext=='viewer');then truepart; else elsetemplate;"></div>
+                             <ng-template #truepart>
+                                <div>
+                                   <button type="button" class="btn btn-block btn-link active btn-sm" style="margin-left:0;font-size:medium;text-align:center;color:#000; ;" (click)="gotoedituser(u.idschedule)">{{u.service}}</button>
+                                </div>
+                             </ng-template>
+                             <ng-template #elsetemplate>
+                                <div>
+                                   {{u.service}}
+                                </div>
+                             </ng-template>
+                          </td>
+                          <td>{{u.str_servicedue}}</td>
+                          <td>{{u.status}}</td>
+                          <td>{{u.str_startdate}}</td>
+                          <td>{{u.str_enddate}}</td>
+                          <td>{{fromEpoch(u.lastservice)}}</td>
+                          <td>{{u.alert}}</td>
+                          <td>{{u.servicecompleted}}</td>
+                          <td>{{u.concessionnates}}</td>
+                       </tr>
+                    </ng-template>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

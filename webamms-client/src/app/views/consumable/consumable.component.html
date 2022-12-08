@@ -1,0 +1,108 @@
+<div class="animated fadeIn bg-white">
+  <div class="d-flex justify-content-between">
+     <div class="d-flex">
+        <div class="ml-3 mt-2"><button class="btn btn-primary" *ngIf="addshowbutton" type="button"(click)="gotoaddaccount()">New</button> </div>
+     </div>
+     <div class="d-flex">
+        <div class="mr-2 mt-2"><input class="form-control mr-sm-1"   type="search"  placeholder="Consumable-no" aria-label="Search" id="search"  name="search" #search/>  </div>
+        <div class="mr-2 mt-2"><button class="btn btn-primary " type="submit" (click)="gotosearchconsumable(search.value)"><i class="fa fa-search "></i></button></div>
+        <div class="mr-4 mt-2"><button class="btn btn-primary my-2 my-sm-0" type="submit"(click)="gotobackconsumable()" ><i class="fa fa-refresh"></i></button></div>
+     </div>
+  </div>
+  <div class="card-body">
+     <table class="table table-sm">
+        <thead>
+           <tr>
+              <th >Image</th>
+              <th >S.No</th>
+              <th >Consumable_No</th>
+              <th >Part_No</th>
+              <th >Oem</th>
+              <th >Description</th>
+              <th >Date & Time</th>
+              <th *ngIf="showdeletecaption">Delete</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let u of data | paginate: config">
+              <td>
+                 <div *ngIf="u.imgname != null; then imageavail; else noimage"></div>
+                 <ng-template #imageavail>
+                    <div>
+                       <img
+                          src="http://localhost:8080/uploads/{{
+                          u.imgname.split(',')[0]
+                          }}"
+                          (error)="onImgError($event)"
+                          alt="First slide"
+                          height="40"
+                          width="40"
+                          />
+                    </div>
+                 </ng-template>
+                 <ng-template #noimage>
+                    <div>
+                       <img
+                          src="http://localhost:8080/uploads/{{ u.imgname }}"
+                          (error)="onImgError($event)"
+                          alt="First slide"
+                          height="40"
+                          width="40"
+                          />
+                    </div>
+                 </ng-template>
+              </td>
+              <td>{{ u.sno }}</td>
+              <td>
+                 <div *ngIf="rolltext == 'regular' ||rolltext == 'admin' ||rolltext == 'viewer';
+                    then truepart;else elsetemplate"></div>
+                 <ng-template #truepart>
+                    <div>
+                       <button type="button" class="btn btn-block btn-link active btn-md"(click)="gotoedituser(u.idconsumable)">
+                       {{ u.consumableno }}
+                       </button>
+                    </div>
+                 </ng-template>
+                 <ng-template #elsetemplate>
+                    <div>
+                       {{ u.consumableno }}
+                    </div>
+                 </ng-template>
+              </td>
+              <td >{{ u.partno }}</td>
+              <td >{{ u.oem }}</td>
+              <td>{{ u.description }}</td>
+              <td>{{ u.date_created | date: "yyyy-MM-dd hh:mm:ss a" }}</td>
+              <td>
+                 <button
+                 class="btn btn-default"
+                 *ngIf="showdeletebutton"
+                 mwlConfirmationPopover
+                 [popoverTitle]="popoverTitle"
+                 [popoverMessage]="popoverMessage"
+                 placement="left"
+                 (confirm)="gotodeleteuser(u.idconsumable)"
+                 (cancel)="cancelClicked = true"
+                 >
+                 <i class="fa fa-trash"></i>
+                 </button>
+              </td>
+           </tr>
+        </tbody>
+     </table>
+     <div class="card-body">
+        <div class="row">
+           <div class="col-xs-12 col-12 d-sm-down-none">
+              <pagination
+              [itemsPerPage]="perpage"
+              id="listing_pagination"
+              [totalItems]="rec1"
+              [(ngModel)]="currentPage"
+              (pageChanged)="handlePageChange($event)"
+              ></pagination>
+           </div>
+        </div>
+     </div>
+  </div>
+  <!----/.row -->
+</div>

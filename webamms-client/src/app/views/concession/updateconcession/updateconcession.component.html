@@ -1,0 +1,67 @@
+<div class="animated fadeIn bg-white" style="width:100%">
+  <div class="card-header"> Update Concession</div>
+  <div class="card-body">
+     <form  #concessionform="ngForm" (ngSubmit) = "onSubmit()" >
+     <fieldset [disabled]="enable">
+        <div class="row g-4">
+           <div class="input-group  col-6">
+              <span class="input-group-text">S.No</span>
+              <input type="text" class="form-control" name="s_no"  [(ngModel)]="concession.s_no" required >
+           </div>
+           <br>
+           <div class="input-group col-6">
+              <span class="input-group-text">Aircraft</span>
+              <input type="text" class="form-control" name="aircraft"  [(ngModel)]="concession.aircraft" required>
+           </div>
+           <br>
+           <div class="input-group col-6 ">
+              <span class="input-group-text">Approval Date</span>
+              <input type="date" class="form-control" name="approval_date"  [(ngModel)]="concession.str_approval_date">
+           </div>
+           <br>
+           <div class="input-group   col-6">
+              <span class="input-group-text">Concession No</span>
+              <input type="text" class="form-control" name="concession_no"  [(ngModel)]="concession.concession_no">
+           </div>
+           <br>
+           <div class="input-group col-6">
+              <span class="input-group-text">Valid Upto</span>
+              <input type="date" class="form-control" name="valid_upto" [(ngModel)]="concession.str_valid_upto">
+           </div>
+           <br>
+           <div class="input-group col-6">
+              <span class="input-group-text">Details</span>
+              <input type="text" class="form-control" name="details" [(ngModel)]="concession.details" required>
+           </div>
+           <br>
+           <div class="input-group col-6 ">
+              <span class="input-group-text">Extended Till</span>
+              <input type="date" class="form-control" name="extended_till" [(ngModel)]="concession.str_extended_till" required>
+           </div>
+           <br>
+           <div class="input-group col-6 ">
+              <span class="input-group-text">Removed On</span>
+              <input type="date" class="form-control" name="removed_on" [(ngModel)]="concession.str_removed_on" required>
+           </div>
+           <br>
+           <div class="input-group col-6 mb-3 ">
+              <span class="input-group-text">Remarks</span>
+              <input type="text" class="form-control" name="remarks" [(ngModel)]="concession.remarks" required>
+           </div>
+           <div class="input-group col-6 mb-3 ">
+           </div>
+           <div class="input-group  mb-3 ">
+              <input type="file" name="file"  (change)="onFileSelected($event)"  #fileinput id="file">
+              <button type="button" class="btn btn-primary" (click)="picuser()">Upload</button>
+           </div>
+           <div class="input-group  mb-3 " >
+              <img src="http://localhost:8080/uploads/{{concession.file}}" style=" width: 500px; height: 400px;"   name="file"  alt="{{concession.file}}"  [(ngModel)]="concession.file" ngDefaultControl/>
+           </div>
+           <div>
+              <button class = "btn btn-primary" type ="submit" [disabled]="!concessionform.valid" >Update</button>
+           </div>
+        </div>
+     </fieldset>
+     </form>
+  </div>
+</div>

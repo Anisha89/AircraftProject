@@ -1,0 +1,27 @@
+.card-body {
+  background-color: white;
+}
+
+.aircraft {
+  display: flex;
+
+  align-items: center;
+}
+.new {
+  flex: auto;
+}
+.data {
+  width: 300px;
+}
+.thead{
+  background-color: skyblue;
+  text-align: center;
+}
+.mr-2{
+  padding-top: 10px;
+}
+.mr-4{
+  width:100px;
+}
+
+

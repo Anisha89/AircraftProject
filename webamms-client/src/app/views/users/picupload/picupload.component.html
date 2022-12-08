@@ -1,0 +1,41 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+     <div class="container">
+        <br><br><br><br><br><br>
+        <div class="row">
+           <div class="col-md-8 mx-auto">
+              <div class="card mx-3">
+                 <div class="card-body p-4">
+                    <h1>Picture Upload</h1>
+                    <form #picform="ngForm" (ngSubmit)="picuser()">
+                    <input
+                    type="file"
+                    name="uploadDocument"
+                    (change)="onFileSelected($event)"
+                    #fileinput
+                    id="files" 
+                    /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    <br>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-info" (click)="picusers(user.imgname)">
+                    Submit
+                    </button>
+                    <br>
+                    <br>
+                    <br>
+                    <img
+                    src="http://localhost:8080/uploads/{{ user.imgname }}"
+                    name="imgname"
+                    alt="{{ user.imgname }}"
+                    height="75"
+                    width="75"
+                    [(ngModel)]="user.imgname"/>
+                    </form>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </main>
+</div>

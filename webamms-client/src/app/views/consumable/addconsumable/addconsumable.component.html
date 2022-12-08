@@ -1,0 +1,85 @@
+<div class="animated fadeIn"   style="max-width:100%">
+  <div class="row">
+     <div class="col-md-6">
+        <div class="card">
+           <div class="card-header" >
+              ADD CONSUMABLE
+           </div>
+           <div class="card-body ">
+              <form  #addgseform="ngForm" (ngSubmit)="adduserformsubmit()">
+              <span class ="text-info"></span>
+              <div *ngIf="alert1" class="alert-success alert-dismissible fade show" role="alert">
+                 <strong>Well done!</strong> You Registered CONSUMABLE Successfully !.
+                 <button (click)="closealert()"type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              <div class="controls">
+                 <div class="input-prepend input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="icon-envelope"></i></span>
+                    </div>
+                    <input type="text"  class="form-control"  placeholder=" Sequence Number" name="sno" [(ngModel)]="consumable.sno" [class.is-invalid]="sno.invalid && sno.touched"  required ngModel #sno="ngModel" >
+                 </div>
+                 <div class="text-danger" *ngIf="sno.errors && (sno.invalid && sno.touched)">
+                    <div class="text-danger" *ngIf ="sno.errors?.required"> Seqno is required.</div>
+                 </div>
+              </div>
+              <br>
+              <div class="controls">
+                 <div class="input-prepend input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="icon-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="ConsumableNo" autocomplete="Consumableno" name="Consumableno" [(ngModel)]="consumable.consumableno" required [class.is-invalid]="consumableno.invalid && consumableno.touched" #consumableno="ngModel" >
+                 </div>
+                 <div class="text-danger" *ngIf="consumableno.errors && (consumableno.invalid && consumableno.touched)">
+                    <div class="text-danger" *ngIf ="consumableno.errors?.required"> Tools No is required.</div>
+                 </div>
+              </div>
+              <br>
+              <div class="controls">
+                 <div class="input-prepend input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Part No"  name="partno"  [class.is-invalid]="partno.invalid && partno.touched" [(ngModel)]="consumable.partno" ngModel #partno="ngModel" required >
+                 </div>
+                 <div class="text-danger" *ngIf="partno.errors && (partno.invalid && partno.touched)">
+                    <div class="text-danger" *ngIf ="partno.errors?.required"> Part No is required.</div>
+                 </div>
+              </div>
+              <br>
+              <div class="controls">
+                 <div class="input-prepend input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="oem" ngModel #gdm="ngModel"  [class.is-invalid]="gdm.invalid && gdm.touched"  [(ngModel)]="consumable.oem" name="oem"  required  >
+                 </div>
+                 <div class="text-danger" *ngIf="gdm.errors && (gdm.invalid && gdm.touched)">
+                    <div class="text-danger" *ngIf ="gdm.errors?.required"> Oem is required.</div>
+                 </div>
+              </div>
+              <br>
+              <div class="controls">
+                 <div class="input-prepend input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text"><i class="icon-lock"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Description" [class.is-invalid]="description.invalid && description.touched" ngModel #description="ngModel"  [(ngModel)]="consumable.description"name="description"  required  >
+                 </div>
+                 <div class="text-danger" *ngIf="description.errors && (description.invalid && description.touched)">
+                    <div class="text-danger" *ngIf ="description.errors?.required"> Description is required.</div>
+                 </div>
+              </div>
+              <br>
+              <div class="">
+                 <button type="submit" class="btn btn-primary" [ng2-loading]="show"  [config]="loadingConfig"  [disabled]='!addgseform.valid' >Submit</button>
+              </div>
+              </form>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

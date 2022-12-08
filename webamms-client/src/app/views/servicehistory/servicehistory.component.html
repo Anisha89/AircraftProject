@@ -1,0 +1,140 @@
+<div class="animated fadeIn bg-white">
+
+  <div class="d-flex justify-content-between">
+
+    <div class="d-flex">
+
+      <div class="ml-4 mt-3"> <span> From </span> </div>
+      <div class="ml-2 mt-2"> <input type="date" class="form-control" id="startdate" [(ngModel)]="from_date"
+          name="startdate" #startdate /> </div>
+      <div class="ml-2 mt-3"><span>To</span> </div>
+      <div class="ml-2 mt-2"> <input type="date" class="form-control" id="enddate" [(ngModel)]="to_date" name="enddate"
+          #enddate /></div>
+      <div class="ml-1 mt-2"> <button type="submit" (click)="startend(startdate.value,enddate.value)"
+          class="btn btn-primary"><i class="fa fa-search"></i></button></div>
+
+    </div>
+
+    <div class="d-flex">
+
+      <div class="mr-2 mt-3"> <span> Aircraft :</span>
+      </div>
+      <div class="mr-3 mt-2">
+        <select id="aircraft" name="aircraft" #aircraft class="form-control"
+          (change)="selectChangeHandler2($event.target.value)">
+
+
+          <option *ngFor="let array of aircraft1" [value]="array.aircraft">{{array.aircraft}}</option>
+
+        </select>
+      </div>
+
+      <div class=" d-flex">
+        <form class="form-inline" #f1="ngForm" (ngSubmit)="gotobackservicehistory()">
+          <div class="mr-2 mt-2">
+            <select style='width:200px' id="service" placeholder="service" name="service" #service class="form-control"
+              (change)="selectChangeHandler1($event)">
+              <option value="" disabled>Select Service </option>
+              <option value="14 day">14 day</option>
+              <option value="1 mo">1 mo</option>
+              <option value="3 mo">3 mo</option>
+              <option value="6 mo">6 mo</option>
+              <option value="12 mo">12 mo</option>
+              <option value="15 mo">15 mo</option>
+              <option value="18 mo">18 mo</option>
+              <option value="24 mo">24 mo</option>
+              <option value="30 mo">30 mo</option>
+              <option value="36 mo">36 mo</option>
+              <option value="48 mo">48 mo</option>
+              <option value="60 mo">60 mo</option>
+              <option value="72 mo">72 mo</option>
+              <option value="90 mo">90 mo</option>
+              <option value="120 mo">120 mo</option>
+            </select>
+          </div>
+
+          <div class="mr-4 mt-2"> <button class="btn btn-primary my-2 my-sm-0" type="submit"><i
+                class="fa fa-refresh "></i></button> </div>
+
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <div class="card-body">
+    <table class="table table-md text-center ">
+      <thead>
+
+        <tr>
+
+          <th>S.No </th>
+          <th>Service</th>
+          <th>Status</th>
+          <th>Start-Date</th>
+          <th>End-Date</th>
+          <th>Last-Service</th>
+          <th>Alert</th>
+          <th>Service-Completed</th>
+          <th>Concessionnates</th>
+          <th>Aircraft</th>
+
+        </tr>
+
+      </thead>
+
+      <tr *ngFor="let u of data|paginate : config">
+
+
+        <td>{{u.sno}}</td>
+        <td>
+
+          {{u.service}}
+
+        </td>
+        <td>{{u.status}}</td>
+        <td *ngIf="fromEpoch(u.startdate)=='1970-1-1'; else strDate">-</td>
+        <ng-template #strDate>
+          <td>{{fromEpoch(u.startdate)}}</td>
+        </ng-template>
+        <td *ngIf="fromEpoch(u.enddate)=='1970-1-1'; else name">-</td>
+        <ng-template #name>
+          <td>{{fromEpoch(u.enddate)}}</td>
+        </ng-template>
+
+        <!--   -->
+        <td *ngIf="fromEpoch(u.lastservice)=='1970-1-1'; else last">-</td>
+        <ng-template #last>
+          <td>{{fromEpoch(u.lastservice)}}</td>
+        </ng-template>
+        <td>{{u.alert}}</td>
+        <td>{{u.servicecompleted}}</td>
+        <td>{{u.concessionnates}}</td>
+        <td>{{u.aircraft}}</td>
+
+      </tr>
+
+
+
+
+    </table>
+    <!--   <button class="btn btn-danger btn-block" (click)="downloadPDF()">Download PDF</button> -->
+    <button class="btn-primary" (click)="createPdf()">Create PDF</button>
+
+    <!--  <button class="btn-primary" (click)="generatePdf(contentToConvert)">Export to PDF</button> -->
+    <div class="card-body">
+      <div class="row">
+        <div class="col-xs-12 col-12 d-sm-down-none">
+          <pagination [itemsPerPage]="perpage" id='listing_pagination' [totalItems]="rec1" [(ngModel)]="currentPage"
+            (pageChanged)="handlePageChange($event)"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

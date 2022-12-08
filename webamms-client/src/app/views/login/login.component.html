@@ -1,0 +1,122 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+     <div style="align-content: center" class="container">
+        <div class="row">
+           <div class="col-md-12 mx-auto">
+              <div class="card-group">
+                 <div
+                    class="card text-white "
+                    style="width: 50%; ">
+                    <img src="assets/aircraft.jpg"  height="600px"  style="border-radius:0%; max-height:max-content">
+                 </div>
+                 <div class="card p-4">
+                    <div class="card-body">
+                       <form #loginform="ngForm" (ngSubmit)="loginUser()" novalidate>
+                       <span class="text-danger">{{ msg }}</span>
+                       <br />
+                       <h1 style="color:black" >Login</h1>
+                       <br>
+                       <br>
+                       <p class="text-muted" >Sign In to your account</p>
+                       <br>
+                       <br>
+                       <div class="controls">
+                          <p
+                             class="text-muted"
+                             style="
+                             padding-bottom: -100;
+                             padding-bottom: 0px;
+                             margin-bottom: 0px;
+                             "
+                             >
+                             Username
+                          </p>
+                          <input
+                          type="email"
+                          class="form-control"
+                          name="email"
+                          [(ngModel)]="emailId"
+                          required
+                          ngModel
+                          #email="ngModel"
+                          [class.is-invalid]="email.invalid && email.touched"     
+                          required
+                          pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                          />
+                          <div *ngIf="email.errors && (email.invalid && email.touched)" class="mt-2"> 
+                             <span class="text-danger" *ngIf='email.errors.required'>Username is required.</span>
+                             <span class="text-danger" *ngIf='email.errors.pattern'>Invalid Username.</span>
+                          </div>
+                       </div>
+                       <br />
+                       <br>
+                       <div class="controls">
+                          <p
+                             class="text-muted"
+                             style="
+                             padding-bottom: -100;
+                             padding-bottom: 0px;
+                             margin-bottom: 0px;
+                             "
+                             >
+                             Password
+                          </p>
+                          <input
+                          [type]="show_button ? 'text' : 'password'"
+                          class="form-control"
+                          name="passwordVal"
+                          #passwordVal="ngModel"
+                          [(ngModel)]="password"
+                          required
+                          [class.is-invalid]="passwordVal.invalid && passwordVal.touched"
+                          minlength="8"
+                          />
+                          <span  style="  float: right; margin-top:-30px; margin-right:10px;" class="showPass"   >  <i [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" style="font-size:18px;"  (click)="showPassword()" > </i></span>
+                          <div *ngIf="passwordVal.errors && (passwordVal.invalid && passwordVal.touched)" class="mt-1"> 
+                             <span class="text-danger" *ngIf='passwordVal.errors?.required'> Password is required.</span> 
+                             <span class="text-danger" *ngIf='passwordVal.errors?.minlength'> Password is length must be 8.</span> 
+                          </div>
+                       </div>
+                       <br />
+                       <br />
+                       <div class="" >
+                          <button
+                          style="width: 100%"
+                          type="submit"
+                          class="btn btn-primary px-4 "
+                          [ng2-loading]="isLoading"
+                          [config]="loadingConfig"
+                          [disabled]="!loginform.valid"
+                          >
+                          Login
+                          </button>
+                       </div>
+                       <br />
+                       <br>
+                       <br>
+                       <div class="row">
+                          <div style="width: 60%">
+                             <span
+                                >New User?
+                             <a href="http://localhost:4200/#/register"
+                                >Register now</a
+                                ></span
+                                >
+                          </div>
+                          <div style="width: 40%">
+                             <a (click)="gotoforgetpwd()">
+                             <a href="http://localhost:4200/#/forgetpwd"
+                                >Forgot password?</a
+                                >
+                             </a>
+                          </div>
+                       </div>
+                       </form>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+  </main>
+</div>

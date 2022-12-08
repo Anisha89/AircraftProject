@@ -1,0 +1,82 @@
+<div class="animated fadeIn bg-white">
+  <div class="card-header bg-white" style="border:none;">
+     <div class="d-flex justify-content-between ">
+        <div> <button class="btn btn-primary" type="button" *ngIf="this.addshowbutton" (click)="gotoaddaccount()">
+           New
+           </button> 
+        </div>
+        <div class="d-flex" style="float: left;">
+           <span class="m-2">Aircraft</span>
+           <select style="margin-right:0px; width:150px" id="aircraft" value="KW-3554"name="aircraft" #aircraft class="form-control" (change)="getData($event.target.value)">
+           <option *ngFor="let array of aircraft1" [value]="array.aircraft"> {{ array.aircraft }}</option>
+           </select>
+        </div>
+     </div>
+  </div>
+  <div class="card-body" >
+     <table class="table table-sm">
+        <thead>
+           <tr>
+              <th>S.No</th>
+              <th > Aircraft </th>
+              <th> Concession_No</th>
+              <th>Approval_Date </th>
+              <th> Details </th>
+              <th > Valid_Upto</th>
+              <th> Extended_Till </th>
+              <th>  Removed_On</th>
+              <th> Remarks </th>
+              <th > Attachment</th>
+              <th *ngIf="this.showdeletebutton" > Delete</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor="let u of concessions | paginate: config">
+              <td >{{ u.s_no }}</td>
+              <td >{{ u.aircraft }}</td>
+              <td>
+                 <button type="button" class="btn btn-block btn-link active btn-md" style="padding-top: 0px;"  (click)="gotoedituser(u.idconcession)">{{u.concession_no}}</button>
+              </td>
+              <td >{{ fromEpoch(u.approval_date) }}</td>
+              <td >{{ u.details }}</td>
+              <td >{{ fromEpoch(u.valid_upto) }}</td>
+              <td >{{ fromEpoch(u.extended_till) }}</td>
+              <td>{{ fromEpoch(u.removed_on) }}</td>
+              <td >{{ u.remarks }}</td>
+
+              <td>
+                <button type="button" style="color:black" class="btn btn-block btn-link active btn-md"   (click)="gotoedituser1(u.file)">{{u.file}}</button>
+             </td>
+             
+              <td>
+                 <button
+                 class="btn btn-default"
+                 mwlConfirmationPopover
+                 [popoverTitle]="popoverTitle"
+                 [popoverMessage]="popoverMessage"
+                 placement="left"
+                 (confirm)="onDelete(u.idconcession)"
+                 *ngIf="this.showdeletebutton"
+                 (cancel)="cancelClicked = true"
+                 >
+                 <i class="fa fa-trash"></i>
+                 </button>
+              </td>
+           </tr>
+        </tbody>
+     </table>
+     <div class="card-body">
+        <div class="row">
+           <div class="col-xs-12 col-12 d-sm-down-none" >
+              <pagination
+              [itemsPerPage]="perpage"
+              id="listing_pagination"
+              [totalItems]="rec1"
+              [(ngModel)]="currentPage"
+              (pageChanged)="handlePageChange($event)"
+              ></pagination>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

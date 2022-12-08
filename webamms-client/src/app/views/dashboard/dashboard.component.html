@@ -1,0 +1,343 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="
+              card-header
+              bg-primary
+              theme-color
+              card-header-warning card-header-icon
+            ">
+            <div class="card-icon">
+              <i class="material-icons">calendar_view_month</i>
+            </div>
+            <h3>
+              <p class="card-category">Schedule</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/schedule">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header bg-primary theme-color card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <h3>
+              <p class="card-category">Status</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/aircraft">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header bg-primary theme-color card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">info_outline</i>
+            </div>
+            <h3>
+              <p class="card-category">Alert</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/alert">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header bg-primary theme-color card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">calendar_view_month</i>
+            </div>
+            <h3>
+              <p class="card-category">Reports</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/reports">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header bg-primary theme-color card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <h3>
+              <p class="card-category">Tools</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/tools">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="
+              card-header
+              bg-primary
+              theme-color
+              card-header-warning card-header-icon
+            ">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <h3>
+              <p class="card-category">Gse</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/gse">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header bg-primary theme-color card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <h3>
+              <p class="card-category">Consumable</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/consumable">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header bg-primary theme-color card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">content_copy</i>
+            </div>
+            <h3>
+              <p class="card-category">Spare</p>
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <a href="http://localhost:4200/#/spare">
+                <small class="text-muted">click here</small>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <div *ngIf="toEpoch(this.mydate) - this.servicedue3554 >= 0" class="card bg-danger card-chart">
+          <div *ngIf="toEpoch(this.mydate) - this.servicedue3554 >= 0"
+            class="card-header bg-danger card-header-warning">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">KW-3554</h4>
+            <p class="card-category"></p>
+            Service required<br />
+            Last service on {{ fromEpoch(servicedue3554) }}
+          </div>
+          <div class="card-footer">
+            <div class="stats" style="color: rgb(4, 24, 24)">
+              <p>
+                Schedule No : {{ id }}<br />
+                Service type : {{ serviceType }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="toEpoch(this.mydate) - this.servicedue3554 <= 0" class="card bg-success card-chart">
+          <div *ngIf="toEpoch(this.mydate) - this.servicedue3554 <= 0"
+            class="card-header bg-success card-header-warning">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">KW-3554</h4>
+            <p class="card-category"></p>
+            No Service required<br />
+            Next service on {{ fromEpoch(servicedue3554) }}
+          </div>
+          <div class="card-footer">
+            <div class="stats" style="color: rgb(4, 24, 24)">
+              <p>
+                Schedule No : {{ id }}<br />
+                Service type : {{ serviceType }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div *ngIf="toEpoch(this.mydate) - this.servicedue3555 >= 0" class="card bg-danger card-chart">
+          <div *ngIf="toEpoch(this.mydate) - this.servicedue3555 >= 0"
+            class="card-header bg-danger card-header-warning">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">KW-3555</h4>
+            <p class="card-category"></p>
+            Service required<br />
+            Last service on {{ fromEpoch(servicedue3555) }}
+          </div>
+          <div class="card-footer">
+            <div class="stats" style="color: rgb(4, 24, 24)">
+              <p>
+                Schedule No : {{ id1 }}<br />
+                Service type : {{ serviceType1 }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="toEpoch(this.mydate) - this.servicedue3555 <= 0" class="card bg-success card-chart">
+          <div *ngIf="toEpoch(this.mydate) - this.servicedue3555 <= 0"
+            class="card-header bg-success card-header-warning">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">KW-3555</h4>
+            <p class="card-category"></p>
+            No Service required<br />
+            Next service on {{ fromEpoch(servicedue3555) }}
+          </div>
+          <div class="card-footer">
+            <div class="stats" style="color: rgb(4, 24, 24)">
+              <p>
+                Schedule No : {{ id1 }}<br />
+                Service type : {{ serviceType1 }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div *ngIf="toEpoch(this.mydate) - this.servicedue3556 >= 0" class="card bg-danger card-chart">
+          <div *ngIf="toEpoch(this.mydate) - this.servicedue3556 >= 0"
+            class="card-header bg-danger card-header-warning">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">KW-3556</h4>
+            <p class="card-category"></p>
+            Service required<br />
+            Last service on {{ fromEpoch(servicedue3556) }}
+          </div>
+          <div class="card-footer">
+            <div class="stats" style="color: rgb(4, 24, 24)">
+              <p>
+                Schedule No : {{ id2 }}<br />
+                Service type : {{ serviceType2 }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="toEpoch(this.mydate) - this.servicedue3556 <= 0" class="card bg-success card-chart">
+          <div *ngIf="toEpoch(this.mydate) - this.servicedue3556 <= 0"
+            class="card-header bg-success card-header-warning">
+            <div class="ct-chart" id="websiteViewsChart"></div>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">KW-3556</h4>
+            <p class="card-category"></p>
+            No Service required<br />
+            Next service on {{ fromEpoch(servicedue3556) }}
+          </div>
+          <div class="card-footer">
+            <div class="stats" style="color: rgb(4, 24, 24)">
+              <p>
+                Schedule No : {{ id2 }}<br />
+                Service type : {{ serviceType2 }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="
+      padding-left: 0px;
+      padding-right: 0px;
+      margin-right: 0px;
+      margin-left: 0px;
+    ">
+        <div class="col-lg-6 col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header bg-primary theme-color">
+                Availability of all Aircrafts
+              </div>
+              <div class="card-body col-md-12">
+                <div class="chart-wrapper">
+                  <canvas baseChart class="chart" [data]="[this.available, this.aog, this.inspection]"
+                    [labels]="doughnutChartLabels1" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-header bg-primary theme-color">
+                Service History of all Aircrafts
+              </div>
+              <div class="card-body col-md-12">
+                <div class="chart-wrapper">
+                  <canvas baseChart class="chart" [data]="[this.notStarted, this.progress, this.completed]"
+                    [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

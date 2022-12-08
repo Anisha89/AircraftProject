@@ -1,0 +1,130 @@
+<nav class="animated fadeIn" style="max-width:1500px;">
+  <div class="card-header  bg-white">
+     <div class="d-flex justify-content-between ">
+      <div class="d-flex">
+         <div class="mr-3"><button class="btn btn-primary" *ngIf="addshowbutton" type="button" (click)="onCreate()">New</button> </div>
+      </div>
+        <div class="d-flex">
+           <div class="mr-2"> 
+              <span >Aircraft:</span> 
+           </div>
+           <div class="mr-4">
+              <select   [(ngModel)]="selectedValue" placeholder="selectedValue" class="form-control" name="aircraft" (change)="getData($event.target.value)"  (click)="getresult()" >
+              <option  *ngFor ="let array of aircraft"  [value]="array.id">{{array.aircraft}}</option> 
+              </select>
+           </div>
+           <div class="mr-3">
+              <button class="btn btn-primary" type="button"(click)="updateData(id)" [disabled]='!this.showeditbutton'  >Update Aircraft hrs</button>
+           </div>
+           <div> 
+              <button class="btn btn-primary" type="button"(click)="createPdf()">Print</button>
+           </div>
+        </div>
+     </div>
+  </div>
+  <div class="card-body">
+     <table  class="table">
+        <tr >
+           <th>S.No</th>
+           <th>Parameter</th>
+           <th>Value</th>
+        </tr>
+        <tr>
+           <td>1</td>
+           <td>Tail</td>
+           <td >{{tail}}</td>
+        </tr>
+        <tr>
+           <td >2</td>
+           <td>Model No</td>
+           <td > {{model}}</td>
+        </tr>
+        <tr>
+           <td >3</td>
+           <td>Sortie No</td>
+           <td >{{sortie_no}}</td>
+        </tr>
+        <tr>
+           <td >4</td>
+           <td>First flight Date</td>
+           <td >{{first_flight_date }}</td>
+        </tr>
+        <tr>
+           <td >5</td>
+           <td>Last Flown_Date</td>
+           <td >{{last_flown_date }}</td>
+        </tr>
+        <tr>
+           <td >6</td>
+           <td>Engine Port Hrs</td>
+           <td >{{engine_part_hrs}}</td>
+        </tr>
+        <tr>
+           <td >7</td>
+           <td>Engine STBD hrs</td>
+           <td >{{engine_STBD_hrs}}</td>
+        </tr>
+        <tr>
+           <td >8</td>
+           <td>Airflame HRS</td>
+           <td >{{airflame_hours}}</td>
+        </tr>
+        <tr>
+           <td >9</td>
+           <td>AARC</td>
+           <td>{{aarc}}</td>
+        </tr>
+        <tr>
+           <td>10</td>
+           <td>APU HRS</td>
+           <td>{{apu_hrs}}</td>
+        </tr>
+        <tr>
+           <td>11</td>
+           <td>APUC HRS</td>
+           <td >{{apu_c_hrs}}</td>
+        </tr>
+        <tr>
+           <td >12</td>
+           <td>APU Cycle</td>
+           <td>{{apu_cycle}}</td>
+        </tr>
+        <tr>
+           <td >13</td>
+           <td>APUC Cycle</td>
+           <td >{{apu_c_cycle}}</td>
+        </tr>
+        <tr>
+           <td >14</td>
+           <td>Aircraft Status</td>
+           <td>{{aircraft_status}}</td>
+        </tr>
+        <tr>
+           <td >15</td>
+           <td>Flight Cycle</td>
+           <td >{{flight_cycle}}</td>
+        </tr>
+     </table>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         

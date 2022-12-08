@@ -1,0 +1,109 @@
+<div class="animated fadeIn" style="max-width:100%">
+  <div class="row">
+     <div class="col-md-6">
+        <div class="card">
+           <div class="card-header"> UPDATE GSE </div>
+           <form id="spareeditform" #spareeditform="ngForm" (ngSubmit)="updateeditformsumbit()">
+           <fieldset [disabled]="enable">
+              <div class="card-body">
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-envelope"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder=" Sequence Number" name="sno"
+                       [(ngModel)]="gse.sno" required [class.is-invalid]="sno.invalid && sno.touched" ngModel
+                       #sno="ngModel">
+                    </div>
+                    <div class="text-danger" *ngIf="sno.errors && (sno.invalid && sno.touched)">
+                       <div class="text-danger" *ngIf="sno.errors?.required"> Seqno is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-user"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="GseNo" autocomplete="Gseno" name="gseno"
+                       [(ngModel)]="gse.gseno" required [class.is-invalid]="gseno.invalid && gseno.touched"
+                       #gseno="ngModel">
+                    </div>
+                    <div class="text-danger" *ngIf="gseno.errors && (gseno.invalid && gseno.touched)">
+                       <div class="text-danger" *ngIf="gseno.errors?.required"> Tools No is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-lock"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Port No" name="portno" [(ngModel)]="gse.portno"
+                       [class.is-invalid]="portno.invalid && portno.touched" ngModel #portno="ngModel" required>
+                    </div>
+                    <div class="text-danger" *ngIf="portno.errors && (portno.invalid && portno.touched)">
+                       <div class="text-danger" *ngIf="portno.errors?.required"> Part No is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-lock"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="oem" ngModel #gdm="ngModel"
+                       [class.is-invalid]="gdm.invalid && gdm.touched" [(ngModel)]="gse.gdm" name="gdm" required>
+                    </div>
+                    <div class="text-danger" *ngIf="gdm.errors && (gdm.invalid && gdm.touched)">
+                       <div class="text-danger" *ngIf="gdm.errors?.required"> Oem is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">Description</span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Description"
+                       [class.is-invalid]="description.invalid && description.touched" ngModel #description="ngModel"
+                       [(ngModel)]="gse.description" name="description" required>
+                    </div>
+                    <div class="text-danger" *ngIf="description.errors && (description.invalid && description.touched)">
+                       <div class="text-danger" *ngIf="description.errors?.required"> Description is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="form-group">
+                    <label for="name">
+                    Image</label>
+                    <input type="file" name="uploadDocument" (change)="onFileSelected($event)" #fileinput id="files">
+                    <br>
+                    <carousel [interval]="false" [(activeSlide)]="activeSlideIndex">
+                    <div *ngFor="let subCategory of gse.imgname?.split(',');let index=index">
+                       <slide>
+                          <img src="http://localhost:8080/uploads/{{subCategory}}" class="pull-right" alt="{{subCategory}}"
+                             class="d-block w-100">
+                          <div class="carousel-caption">
+                             <h4 id="slideInd">Slide {{index}}</h4>
+                          </div>
+                       </slide>
+                    </div>
+                    </carousel>
+                    <br>
+                    <div>
+                       <button type="button" class="btn btn-primary" (click)="imguser()">Add Slide
+                       </button>
+                       <button type="button" class="btn btn-primary" (click)="deleteSlide()">Remove
+                       </button>
+                    </div>
+                 </div>
+                 <button type="submit" class="btn btn-primary " id="btnContactUs">
+                 Update</button>
+              </div>
+           </fieldset>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>

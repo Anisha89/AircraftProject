@@ -1,0 +1,65 @@
+
+<div class="animated fadeIn bg-white"  style="max-width:100%">
+    <div class="card-header  ">
+    
+      <strong>Work order</strong>
+    </div>
+    <div class="card-body">
+             
+        <form #form="ngForm" (ngSubmit) = "onSubmit()" >
+      
+          
+            <div class="row">
+                <div class="col-md-12">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Aircraft</span>
+                  </div>
+                  
+         <select  [(ngModel)]="selectedValue"  class="form-control" name="aircraft" (change)="getData($event.target.value)"   > 
+          
+         
+            <option  *ngFor ="let array of aircraft"  [value]="array.id">{{array.aircraft}}</option> 
+          </select>
+                 
+                </div>
+              </div>
+            </div>
+
+<br>
+<br>
+<br>
+         
+         
+         <div class="row">
+            <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">PreparedBy</span>
+              </div>
+              <input type="text" class="form-control" name="preapareBy" [(ngModel)]="preparedBy" required>
+             
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text">IssueBy</span>
+              </div>
+              <input type="text" class="form-control" name ="issueBy" [(ngModel)]="issueBy"required>
+             
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <button class = "btn btn-primary" type ="submit"  (click)="createPdf()">Save</button>
+        </form>
+        </div>
+</div>

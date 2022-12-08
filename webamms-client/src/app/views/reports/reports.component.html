@@ -1,0 +1,79 @@
+<div class="animated fadeIn bg-white">
+  <div style="background-color: white;" class="card-header">
+     <div class="d-flex justify-content-between">
+        <div class="d-flex">
+           <div class="m-2"><span>Aircraft:</span> </div>
+           <div>
+              <select class="form-control"   (change)="onSelectAircraft($event.target.value,startDate.value,endDate.value)" >
+              <option  *ngFor ="let array of aircraft" [value]="array.id">{{array.aircraft}}</option>
+              </select>
+           </div>
+        </div>
+        <div class="d-flex">
+           <div class="m-2"><input type="radio"  name="optradio"  value="0" checked (click)="setOption(0)">All</div>
+           <div class="m-2"><input type="radio" name="optradio" value="1" (click)="setOption(1)">From</div>
+           <div class="mr-2"> <input type="date"  [(ngModel)]= "s" class="form-control" id="startDate" name="startDate" #startDate /></div>
+           <div class="m-2">     <span>  To </span></div>
+           <div class="mr-2"> <input type="date"   [(ngModel)]= "e"  class="form-control" id="endDate" name="endDate" #endDate/>  </div>
+           <div class="mr-3"><button type="submit" (click)="Applyof(startDate.value,endDate.value)"class="btn btn-primary">Apply</button></div>
+           <div class="mr-4"><button type="submit" (click)="exportexcel()"class="btn btn-primary">Export to Excel</button></div>
+        </div>
+     </div>
+  </div>
+  <div class="card-body">
+     <table id="excel-table" class="table table-sm "  >
+        <thead>
+           <tr>
+              <th>S.No</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Date flown</th>
+              <th>Up Time</th>
+              <th>Down Time</th>
+              <th>Sortie No</th>
+              <th>Aircraft Status</th>
+              <th>ENG Port Hrs</th>
+              <th>ENG STBD Hrs</th>
+              <th>APU Hrs</th>
+              <th>APUC Hrs</th>
+              <th>AARC</th>
+              <th>APU Cycle</th>
+              <th>APUC Cycle</th>
+              <th>Flight Cycle</th>
+              <th>After Flight Cycle</th>
+              <th>Repair Log</th>
+              <th>PFR File</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor ="let u of report | paginate: config ;let a =index " class="example">
+              <td >{{perpage * (currentPage - 1) + a+1 }}</td>
+              <td >{{u.src_from | titlecase}}</td>
+              <td >{{u.dst_no | titlecase}}</td>
+              <td >{{fromEpoch(u.date_flown)}}</td>
+              <td >{{u.up_time_hrs}}</td>
+              <td >{{u.down_time_hrs}}</td>
+              <td >{{u.sortie_no}}</td>
+              <td >{{u.aircraft_status}}</td>
+              <td >{{u.port_hrs}}</td>
+              <td >{{u.stbd_hrs}}</td>
+              <td >{{u.apu_hrs}}</td>
+              <td >{{u.apuc_hrs}}</td>
+              <td >{{u.aarc}}</td>
+              <td >{{u.apu_cycle}}</td>
+              <td >{{u.apuc_cycle}}</td>
+              <td >{{u.flight_cycle}}</td>
+              <td >{{u.after_flight_log}}</td>
+              <td >{{u.repair_log}}</td>
+              <td >
+                 <button type="button" class="btn btn-block btn-link active btn-md" style="padding-top: 0px;" (click)="gotoedituser1(u.file)">{{u.file}}</button>
+              </td>
+           </tr>
+        </tbody>
+     </table>
+     <pagination [itemsPerPage]="perpage" 
+     id ='listing_pagination' 
+     [totalItems]="rec1" 
+     [(ngModel)]="currentPage" 
+     (pageChanged)="handlePageChange($event)"></pagination> 
+  </div>

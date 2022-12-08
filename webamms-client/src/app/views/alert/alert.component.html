@@ -1,0 +1,35 @@
+<div class=" animated fadeIn ">
+  <div class="row">
+     <div class="card col-md-8">
+        <div style="background-color: white;" class="card-header">
+           <div class="d-flex">
+              <div class="m-2"><span >Aircraft:</span></div>
+              <div>
+                 <select   id="aircraft"  [(ngModel)]='nrSelect' name="saircraft" #aircraft class="form-control" (change)="selectChangeHandler4($event)" >
+                 <option  *ngFor ="let array of aircraft1" [value]="array.aircraft">{{array.aircraft}}</option>
+                 </select>
+              </div>
+           </div>
+        </div>
+        <div class="card-body">
+           <div class="col-md-12">
+              <table style="width:100%;"class="table">
+                 <thead>
+                    <tr>
+                       <th>S.No </th>
+                       <th>Service</th>
+                       <th>{{nrSelect}}</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr *ngFor="let u of data let a= index">
+                       <td>{{a+1}}</td>
+                       <td>{{u.service}}</td>
+                       <td class={{u.color}}>{{fromEpoch(u.servicedue)}}</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+     </div>
+  </div>

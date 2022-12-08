@@ -1,0 +1,141 @@
+<div class="animated fadeIn" style="width:100%;">
+  <div class="row">
+     <div class="col-md-12">
+        <div class="card">
+           <div class="card-header" >
+              Add Schedule
+           </div>
+           <div class="card-body">
+              <form #addscheduleform="ngForm" (ngSubmit)="adduserformsubmit()">
+              <div class="row">
+                 <div class="form-group 1 col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">Sequence no</span>
+                       </div>
+                       <input type="text"  class="form-control"  placeholder="Sequence no" name="sno" [(ngModel)]="schedule.sno" required ngModel #sno="ngModel" >
+                    </div>
+                 </div>
+                 <div class="form-group 2 col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">Aircraft</span>
+                       </div>
+                       <select  id="aircraft"  [(ngModel)]="schedule.aircraft" name="aircraft" #aircraft class="form-control" required  (change)="validate_aircraft($event)" ngModel #aircraft="ngModel" >
+                       <option  *ngFor ="let array of aircraft1" [value]="array.aircraft" >{{array.aircraft}}</option>
+                       </select>
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">service</span>
+                       </div>
+                       <select style='width:200px' id="service"  placeholder="service"  autocomplete="service"name="service" #service class="form-control"   (change)="selectChangeHandler($event)" [(ngModel)]="schedule.service" required  >
+                       <option value="" disabled>Select Service </option>
+                       <option value="14 day">14 day</option>
+                       <option value="1 mo">1 mo</option>
+                       <option value="3 mo">3 mo</option>
+                       <option value="6 mo">6 mo</option>
+                       <option value="12 mo">12 mo</option>
+                       <option value="15 mo">15 mo</option>
+                       <option value="18 mo">18 mo</option>
+                       <option value="24 mo">24 mo</option>
+                       <option value="30 mo">30 mo</option>
+                       <option value="36 mo">36 mo</option>
+                       <option value="48 mo">48 mo</option>
+                       <option value="60 mo">60 mo</option>
+                       <option value="72 mo">72 mo</option>
+                       <option value="90 mo">90 mo</option>
+                       <option value="120 mo">120 mo</option>
+                       </select>
+                    </div>
+                    <div class="text-danger">  {{ msg}}  </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">servicedue</span>
+                       </div>
+                       <input type="date" class="form-control" placeholder="startdate"  name="servicedate" [(ngModel)]="schedule.str_servicedue" ngModel #servicedue="ngModel" required >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div
+                       class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">startdate</span>
+                       </div>
+                       <input type="date" class="form-control" placeholder="startdate"  name="startdate" [(ngModel)]="schedule.str_startdate" ngModel #startdue="ngModel" required >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">status</span>
+                       </div>
+                       <select style='width:100px'  id="status"  name="status" #name [(ngModel)]="schedule.status" class="form-control" (change)="selectChangeHandler($event)">
+                       <option value="Progress">Progress</option>
+                       <option value="Completed">Completed</option>
+                       <option value="NotStarted">Not Started</option>
+                       </select>
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">enddate</span>
+                       </div>
+                       <input type="date" class="form-control" placeholder="enddate" ngModel #enddate="ngModel"  [(ngModel)]="schedule.str_enddate" name="enddate"  required  >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">lastservice</span>
+                       </div>
+                       <input type="date" class="form-control" placeholder="lastservice" ngModel #lastservice="ngModel"  [(ngModel)]="schedule.str_lastservice"name="lastservice"  required  >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">nextservice</span>
+                       </div>
+                       <input type="date" class="form-control" placeholder="nextservice" ngModel #nextservice="ngModel"  [(ngModel)]="schedule.str_nextservice"name="enddate"  required  >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">alert</span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="alert" ngModel #alert="ngModel"  [(ngModel)]="schedule.alert"name="alert"  required  >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">servicecompleted</span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="servicecompleted"  name="servicecompleted" [(ngModel)]="schedule.servicecompleted" ngModel #servicecompleted="ngModel" required >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">concessionnates</span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="concessionnates"  name="concessionnates" [(ngModel)]="schedule.concessionnates" ngModel #concessionnates="ngModel" required >
+                    </div>
+                 </div>
+                 <div class="form-group col-6">
+                    <button type="button"[ng2-loading]="show" [config]="loadingConfig" (click)="adduserformsubmit()" class="btn btn-sm btn-primary"  [disabled]="!addscheduleform.valid">Submit</button>
+                 </div>
+              </div>
+              </form>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>

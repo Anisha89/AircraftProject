@@ -1,0 +1,92 @@
+<div class="animated fadeIn" style="max-width:100%">
+  <div class="row">
+     <div class="col-md-6">
+        <div class="card">
+           <div class="card-header"> UPDATE SPARE </div>
+           <form id="spareeditform" #spareeditform="ngForm" (ngSubmit)="updateeditformsubmit()">
+           <fieldset [disabled]="enable">
+              <div class="card-body">
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="icon-envelope"></i></span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="SeqNo" autocomplete="seqno" name="seqno" [class.is-invalid]="sno.invalid && sno.touched" #sno="ngModel"   [(ngModel)]="spare.seqno" required >
+                    </div>
+                    <div class="text-danger" *ngIf="sno.errors && (sno.invalid && sno.touched)">
+                       <div class="text-danger" *ngIf ="sno.errors?.required"> Seqno is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">Part No</span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Part No"  name="partno" [(ngModel)]="spare .partno" [class.is-invalid]="partno.invalid && partno.touched"  ngModel #partno="ngModel" required >
+                    </div>
+                    <div class="text-danger" *ngIf="partno.errors && (partno.invalid && partno.touched)">
+                       <div class="text-danger" *ngIf ="partno.errors?.required"> Part No is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">Oem</span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="oem" ngModel [class.is-invalid]="gdm.invalid && gdm.touched" #gdm="ngModel"  [(ngModel)]="spare.oem" name="gdm"  required  >
+                    </div>
+                    <div class="text-danger" *ngIf="gdm.errors && (gdm.invalid && gdm.touched)">
+                       <div class="text-danger" *ngIf ="gdm.errors?.required"> Oem is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="controls">
+                    <div class="input-prepend input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">Description</span>
+                       </div>
+                       <input type="text" class="form-control" placeholder="Description" [class.is-invalid]="description.invalid && description.touched"  ngModel #description="ngModel"  [(ngModel)]="spare.description"name="description"  required  >
+                    </div>
+                    <div class="text-danger" *ngIf="description.errors && (description.invalid && description.touched)">
+                       <div class="text-danger" *ngIf ="description.errors?.required"> Description is required.</div>
+                    </div>
+                 </div>
+                 <br>
+                 <div class="form-group">
+                    <label for="name">
+                    Image</label>
+                    <input type="file" name="uploadDocument" (change)="onFileSelected($event)" #fileinput id="files">
+                    <br>
+                    <br>
+                    <carousel [interval]="false"  [(activeSlide)]="activeSlideIndex"  [showIndicators]="showIndicator" >
+                    <div *ngFor="let subCategory of spare.imgname?.split(',');let index=index; let last=last;">
+                       <slide >
+                          <img src="http://localhost:8080/uploads/{{subCategory}}"  
+                             alt="{{subCategory}}" class="d-block w-100">
+                          <div class="carousel-caption">
+                             <h4 align="left">Slide {{index}}</h4>
+                          </div>
+                       </slide>
+                    </div>
+                    </carousel>
+                    <br>
+                    <div>
+                       <button type="button" class="btn btn-primary" (click)="imguser()">Add Slide
+                       </button>
+                       <button type="button" class="btn btn-primary" (click)="deleteSlide()">Remove
+                       </button>
+                    </div>
+                 </div>
+                 <div>
+                    <button type="submit" class="btn btn-primary " id="btnContactUs" [disabled]="!spareeditform.valid"  >
+                    Update</button>
+                 </div>
+              </div>
+           </fieldset>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>

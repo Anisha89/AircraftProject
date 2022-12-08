@@ -1,0 +1,19 @@
+export class Aircraft {
+    id:number;
+	aircraft:string;
+	tail:string;
+    model:string;
+    first_flight_date:any;
+	last_flown_date:any;
+	sortie_no:string;
+	airflame_hours:string;
+    engine_part_hrs:string;
+    engine_STBD_hrs:string;
+    aarc:string;
+    flight_cycle:any;
+    aircraft_status:string;
+    apu_hrs:any;
+    apu_c_hrs:string;
+    apu_cycle:string;
+    apu_c_cycle:string;
+}

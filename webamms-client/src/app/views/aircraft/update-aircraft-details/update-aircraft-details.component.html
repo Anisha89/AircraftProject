@@ -1,0 +1,301 @@
+<div class="animated fadeIn bg-white" style="max-width:1500px;">
+  <div class="card-header col-md-12"  >
+     <strong>Sortie Flight Update</strong>
+  </div>
+  <div class="card-body">
+     <form #sortieform="ngForm" (ngSubmit)="onSubmit()">
+     <div class="row row-md-12">
+        <div class="form-group col-md-6">
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">Aircraft</span>
+              </div>
+              <input type="text" value="{{ x }}" id="aircraft" name="aircraft" class="form-control"/>
+           </div>
+        </div>
+        <div class="form-group col-md-6">
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">Date_Flown</span>
+              </div>
+              <input type="date" id="date_flown" name="str_date_flown"
+              class="form-control"
+              [(ngModel)]="sortie.str_date_flown"
+              placeholder="Date_flown"
+              />
+           </div>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-md-6">
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">place_from</span>
+              </div>
+              <input
+              type="text"
+              id="place_from"
+              name="place_from"
+              class="form-control"
+              [(ngModel)]="sortie.src_from"
+              placeholder="place_from"
+              required
+              />
+           </div>
+        </div>
+        <div class="col-md-6">
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">place_to</span>
+              </div>
+              <input
+              type="text"
+              id="place_to"
+              name="dst_no"
+              class="form-control"
+              [(ngModel)]="sortie.dst_no"
+              placeholder="place_to"
+              required
+              />
+           </div>
+        </div>
+     </div>
+     <br />
+     <div class="row">
+        <div class="col-md-6">
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">Aircraftupptime</span>
+              </div>
+              <input
+              type="time"
+              id="Aircraftuptime"
+              name="Aircraftupptime"
+              class="form-control"
+              [(ngModel)]="sortie.up_time_hrs"
+              placeholder="Aircraftupptime"
+              required
+              />
+           </div>
+        </div>
+        <div class="col-md-6">
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">Aircrafdowntime</span>
+              </div>
+              <input
+              type="time"
+              id="Aircraftdowntime"
+              name="Aircraftdowntime"
+              class="form-control"
+              [(ngModel)]="sortie.down_time_hrs"
+              placeholder="Aircraftdowntime"
+              required
+              />
+           </div>
+        </div>
+     </div>
+     <br />
+     <div class="card">
+        <div class="card-body">
+           <div class="row g-3">
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Sortie</span>
+                    </div>
+                    <input
+                    type="text"
+                    class="form-control"
+                    name="sortie_no"
+                    [(ngModel)]="sortie.sortie_no"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Aircraft_status</span>
+                    </div>
+                    <select
+                    name="select1"
+                    class="form-control"
+                    name="aircraft_status"
+                    [(ngModel)]="sortie.aircraft_status"
+                    required
+                    >
+                    <option value="0" selected disabled >select</option>
+                    <option value="Avaliable">Avaliable</option>
+                    <option value="AOG">AOG</option>
+                    <option value="Inspection">Inspection</option>
+                    </select>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Engine_port_hrs</span>
+                    </div>
+                    <input
+                    type="time"
+                    class="form-control"
+                    name="port_hrs"
+                    [(ngModel)]="sortie.port_hrs"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Aarc</span>
+                    </div>
+                    <input
+                    type="time"
+                    class="form-control"
+                    name="aarc"
+                    [(ngModel)]="sortie.aarc"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Engine_stbd_hrs</span>
+                    </div>
+                    <input
+                    type="time"
+                    class="form-control"
+                    name="stbd_hrs"
+                    [(ngModel)]="sortie.stbd_hrs"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Apu_cycle</span>
+                    </div>
+                    <input
+                    type="time"
+                    class="form-control"
+                    name="apu_cycle"
+                    [(ngModel)]="sortie.apu_cycle"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Apu_hrs</span>
+                    </div>
+                    <input
+                    type="time"
+                    class="form-control"
+                    name="apu_hrs"
+                    [(ngModel)]="sortie.apu_hrs"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Apuc_cycle</span>
+                    </div>
+                    <input
+                    type="time"
+                    class="form-control"
+                    name="apuc_cycle"
+                    [(ngModel)]="sortie.apuc_cycle"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Apuc_hrs</span>
+                    </div>
+                    <input
+                    type="time"
+                    class="form-control"
+                    name="apuc_hrs"
+                    [(ngModel)]="sortie.apuc_hrs"
+                    required
+                    />
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Flight_cycle</span>
+                    </div>
+                    <input
+                    type="text"
+                    value="{{ y }}"
+                    class="form-control"
+                    name="flight_cycle"
+                    [(ngModel)]="sortie.flight_cycle"
+                    />
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div>
+     <br />
+     <div class="card">
+        <div class="card-body">
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">after_flight_log</span>
+              </div>
+              <input
+              type="text"
+              class="form-control"
+              name="after_flight_log"
+              [(ngModel)]="sortie.after_flight_log"
+              required
+              />
+           </div>
+           <br />
+           
+           <div class="input-group">
+              <div class="input-group-prepend">
+                 <span class="input-group-text">Repair_log</span>
+              </div>
+              <input
+              type="text"
+              class="form-control"
+              name="repair_log"
+              [(ngModel)]="sortie.repair_log"
+              required
+              />
+            </div>
+            <br>
+            <br>
+           <div class="input-group">
+            <div class="input-group-prepend">
+               <span class="input-group-text">Pfr_file</span>
+            </div>&nbsp;&nbsp;&nbsp;
+            <input type="file" name="file"  (change)="onFileSelected($event)"  #fileinput id="file">
+            <button type="button" class="btn btn-primary" (click)="onupload()">Upload</button>
+            </div>
+           <br />
+        </div>
+     </div>
+     <div> <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="!sortieform.valid"
+        >
+        Save
+        </button>
+     </div>
+     </form>
+  </div>
+</div>

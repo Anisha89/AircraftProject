@@ -1,0 +1,21 @@
+export class Schedule {
+    id:number;
+    sno:number;
+    service:string;
+    str_servicedue:string;
+    servicedue:any;
+    status:any;
+    startdate:any;
+    str_startdate:string;
+    str_enddate:string;
+    enddate:any;
+    lastservice:any;
+    str_lastservice:string;
+    alert:number;
+    servicecompleted:string;
+    concessionnates:string;
+    date_created:any;
+    nextservice:any;
+    str_nextservice:string;
+    aircraft:string;
+}

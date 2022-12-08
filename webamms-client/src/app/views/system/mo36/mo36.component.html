@@ -1,0 +1,181 @@
+<div class="animated fadeIn bg-white">
+  <div class="d-flex justify-content-between">
+     <div class="d-flex">
+        <div class="mt-3" style="margin-left:24px"> <i class="icon-menu icons font-1xl d-block "  ></i>  </div>
+        <div class="mt-2 ml-3"> <button class="btn btn-primary" *ngIf="addshowbutton" type="button"(click)="gotoaddaccount()">New</button></div>
+        <div class="mt-2 ml-3"> <button class="btn btn-primary" (click)="createPdf()" type="button">Print</button></div>
+        <div class="mt-2 ml-3"> <button class="btn btn-primary" (click)="generate()" type="button">Generate Work order</button></div>
+     </div>
+     <div class="d-flex">
+        <div class="mr-1 mt-2"> <input class="form-control mr-sm-1"   type="search" placeholder="SEQ-NO/SMRDNO" aria-label="Search" id="search"  name="search" #search/></div>
+        <div class="mr-3 mt-2"><button class="btn btn-primary " type="submit"(click)="gotosearchservice(search.value)"><i class="fa fa-search "></i></button></div>
+        <div class="mr-4 mt-2"><button class="btn btn-primary my-2 my-sm-0" type="submit"(click)="gotobackservice()" ><i class="fa fa-refresh "></i></button>  </div>
+     </div>
+  </div>
+  <div class="card-body">
+     <table class="table table-sm">
+        <thead>
+           <tr>
+              <!-- <th>Profile </th> -->
+              <th >Select </th>
+              <th >Seq_No </th>
+              <th>Smrd_No</th>
+              <th>Ammtc_No</th>
+              <th>Type</th>
+              <th>Cat</th>
+              <th>Effectivity</th>
+              <th>Description</th>
+              <th>Trade</th>
+              <th>Date_Created</th>
+              <th *ngIf="showdeletecaption">Delete</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr *ngFor ="let u of data|paginate : config" [class.bg-secondary]="selected_id===u.idservice">
+           <div *ngIf="(nam2.indexOf(u.idservice)>-1);then truepartck;else falsepartck;"> </div>
+           <ng-template #truepartck>
+              <td >
+                 <input type="checkbox"  id="myCheck1" checked="true" (click)="show($event,u.idservice,u.gsenos,u.sparenos,u.toolsnos,u.consumablenos)">
+              </td>
+           </ng-template>
+           <ng-template #falsepartck>
+              <td >
+                 <input type="checkbox"  id="myCheck1"  (click)="show($event,u.idservice,u.gsenos,u.sparenos,u.toolsnos,u.consumablenos)">
+              </td>
+           </ng-template>
+           <td>
+              <div *ngIf="(rolltext=='regular')||(rolltext=='admin'||rolltext=='viewer');then truepart; else elsetemplate;"></div>
+              <ng-template #truepart>
+                 <div>
+                    <button type="button" class="btn btn-block btn-link active btn-lg" style="margin-left:0;color:darkblue" (click)="gotoedituser(u.idservice)">{{u.seqno}}</button>
+                 </div>
+              </ng-template>
+              <ng-template #elsetemplate>
+                 <div>
+                    {{u.seqno}}
+                 </div>
+              </ng-template>
+           </td>
+           <td >{{u.smrdno}}</td>
+           <td >{{u.ammtcno}}</td>
+           <td>{{u.type}}</td>
+           <td >{{u.cat}}</td>
+           <td >{{u.effectivity}}</td>
+           <td >{{u.description}}</td>
+           <td >{{u.trade}}</td>
+           <td >{{u.date_created|date:'yyyy-MM-dd hh:mm:ss a'}}</td>
+           <td>
+              <button
+              class="btn btn-default " *ngIf="showdeletebutton"
+              mwlConfirmationPopover
+              [popoverTitle]="popoverTitle"
+              [popoverMessage]="popoverMessage"
+              placement="left"
+              (confirm)="gotodeleteuser(u.idservice)"
+              (cancel)="cancelClicked = true"
+              >
+              <i class="fa fa-trash  "></i>
+              </button>
+           </td>
+           </tr>
+        </tbody>
+     </table>
+     <div class="card-body">
+        <div class="row">
+           <div class="col-xs-12 col-12 d-sm-down-none">
+              <pagination [itemsPerPage]="perpage"  id ='listing_pagination' [totalItems]="rec1" [(ngModel)]="currentPage" (pageChanged)="handlePageChange($event)"></pagination>
+           </div>
+        </div>
+     </div>
+     <div *ngIf="(istab==true || this.count != 0 && this.count1!=0 && this.count5!=0);then truepart;else falsepart;"></div>
+     <ng-template #truepart>
+        <tabset>
+           <tab height ="100px" class="excel-table" heading="GSE">
+              <table class="table table-sm1"  >
+                 <thead>
+                    <tr>
+                       <th>S.No </th>
+                       <th>Gse_No </th>
+                       <th>Port_No</th>
+                       <th>Oem</th>
+                       <th>Description</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr *ngFor ="let u1 of datagse" [class.bg-secondary]="nam2.indexOf(u1.idgse)>-1">
+                    <td>{{u1.sno }}</td>
+                    <td>{{u1.gseno}}</td>
+                    <td>{{u1.portno}}</td>
+                    <td>{{u1.gdm}}</td>
+                    <td>{{u1.description}}</td>
+                    </tr> 
+              </table>
+          
+           </tab>
+           <tab class="excel-table" heading="SPARE" >
+              <table class="table table-sm1">
+                 <thead>
+                    <tr>
+                       <th>S.No </th>
+                       <th>Port_No</th>
+                       <th>Oem</th>
+                       <th>Description</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr *ngFor ="let u2 of dataspare">
+                       <td>{{u2.seqno }}</td>
+                       <td>{{u2.partno}}</td>
+                       <td>{{u2.oem}}</td>
+                       <td>{{u2.description}}</td>
+                    </tr>
+              </table>
+           </tab>
+           <tab class="excel-table"   heading="TOOLS">
+              <table class="table table-sm1">
+                 <thead>
+                    <tr>
+                       <th>S.No </th>
+                       <th>Port_No</th>
+                       <th>Tools_No</th>
+                       <th>Oem</th>
+                       <th>Description</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr *ngFor ="let u2 of datatools">
+                       <td>{{u2.sno }}</td>
+                       <td>{{u2.partno}}</td>
+                       <td>{{u2.toolsno}}</td>
+                       <td>{{u2.ogm}}</td>
+                       <td>{{u2.description}}</td>
+                    </tr>
+              </table>
+           </tab>
+           <tab  class="excel-table"   heading="CONSUMABLE">
+              <table class="table table-sm1">
+                 <thead>
+                    <tr>
+                       <th>S.No </th>
+                       <th>Port-No</th>
+                       <th>Consumable_No</th>
+                       <th>Oem</th>
+                       <th>Description</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr *ngFor ="let u2 of dataconsumable">
+                       <td>{{u2.sno }}</td>
+                       <td>{{u2.partno}}</td>
+                       <td>{{u2.consumableno}}</td>
+                       <td>{{u2.oem}}</td>
+                       <td>{{u2.description}}</td>
+                    </tr>
+              </table>
+           </tab>
+        </tabset>
+     </ng-template>
+     <ng-template #falsepart>
+     </ng-template>
+  </div>
+</div>

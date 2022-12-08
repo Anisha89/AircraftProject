@@ -1,0 +1,132 @@
+<div class="animated fadeIn bg-white" style="max-width:100%">
+  <div class="card-header" >
+     <strong>Edit Schedule</strong> 
+  </div>
+  <br>
+  <div class="card-body">
+     <form name="editscheduleform"#editscheduleform="ngForm" (ngSubmit)="adduserformsubmit()">
+     <fieldset [disabled]="enable">
+        <div class="row">
+           <div class="col-md-6">
+              <div class="form-group">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">S.no</span>
+                    </div>
+                    <input type="text" readonly class="form-control"  placeholder="sno" name="sno" [(ngModel)]="schedule.sno" required ngModel #sno="ngModel" > 
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="form-group">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Service</span>
+                    </div>
+                    <input type="text" readonly class="form-control" placeholder="service" autocomplete="service" name="service" [(ngModel)]="schedule.service" required >
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="form-group">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Service Due</span>
+                    </div>
+                    <input type="date"  readonly class="form-control" placeholder="servicedue"  name="servicedue" [(ngModel)]="schedule.str_servicedue" ngModel #servicedue="ngModel" required >
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="form-group">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Last Service </span>
+                    </div>
+                    <input type="date"  readonly class="form-control" placeholder="lastservice"  name="lastservice" [(ngModel)]="schedule.str_lastservice" ngModel #lastservice="ngModel" required >
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="form-group">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text">Alert Days</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="alert" ngModel #alert="ngModel"  [(ngModel)]="schedule.alert"name="alert"  required  >
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="form-group">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text"> Completed Service</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="completedservice"  name="servicecompleted" [(ngModel)]="schedule.servicecompleted" ngModel #servicecompleted="ngModel" required >
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="form-group">
+                 <div class="input-group">
+                    <div class="input-group-prepend">
+                       <span class="input-group-text"> Start Date</span>
+                    </div>
+                    <input type="date" [disabled]=this.schedule.startdate class="form-control" placeholder="startdate"  name="startdate" [(ngModel)]="schedule.str_startdate" ngModel #startdate="ngModel" required >
+                 </div>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="form-group row">
+                 <label class="col-sm-1 col-form-label mr-1" for="inline-radios" > Status   </label>
+                 <div class="col-md-10 col-form-label">
+                    <div class="form-check form-check-inline mr-1" id="inline-radios">
+                       <input type="radio" id="myradio"name="myradio" value="Not Started" [checked]="this.schedule.status=='Not Started'?true:false" [disabled]="this.schedule.status=='Progress'||this.schedule.status=='Completed'?true:false" (change)="selectChangeHandler2($event)" >&nbsp; Not Started&nbsp;
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                       <input type="radio" id="myradio" name="myradio" value="Progress" [checked]="this.schedule.status=='Progress'?true:false"  (change)="selectChangeHandler($event)" >&nbsp;Progress&nbsp;
+                    </div>
+                    <div class="form-check form-check-inline mr-1">
+                       <input type="radio" id="myradio" name="myradio" value="Completed" [checked]="" [disabled]="this.schedule.status=='Not Started'" (click)="toogle()" (change)="selectChangeHandler1($event)" (change)="selectnextservice($event)">&nbsp; Completed&nbsp;  
+                    </div>
+                 </div>
+              </div>
+           </div>
+           <ng-container class="row" *ngIf="showme">
+              <div class="col-md-6">
+                 <div class="form-group">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text"> End Date</span>
+                       </div>
+                       <input type="date"   class="form-control" placeholder="enddate"  name="enddate" [(ngModel)]="schedule.str_enddate" (change)="selectChangeHandler1($event)"  ngModel #enddate="ngModel" required >
+                    </div>
+                 </div>
+              </div>
+              <div class="col-md-6">
+                 <div class="form-group">
+                    <div class="input-group">
+                       <div class="input-group-prepend">
+                          <span class="input-group-text">Next Service</span>
+                       </div>
+                       <input type="date" readonly class="form-control"  ngModel #nextservice="ngModel"  [(ngModel)]="schedule.str_nextservice"    name="nextservice"  required  >
+                    </div>
+                 </div>
+              </div>
+           </ng-container>
+           <div class="form-group row">
+              <label class="col-md-12 col-form-label" for="textarea-input">Concessionnates</label>
+              <div  class="col-md-12">
+                 <textarea id="textarea-input" name="textarea-input" rows="3"style="" class="form-control" placeholder="Concessionnates"[(ngModel)]="schedule.concessionnates" ngModel #concessionnates="ngModel" required></textarea>
+              </div>
+           </div>
+           <div>
+              <button type="button"[ng2-loading]="show" [config]="loadingConfig"(click)="adduserformsubmit(schedule.aircraft)" class="btn btn-sm btn-primary">update</button>
+              <button type="button" class="btn btn-sm btn-primary" (click)="goback(schedule.aircraft)">Cancel</button>
+           </div>
+        </div>
+     </fieldset>
+     </form>
+  </div>
+</div>

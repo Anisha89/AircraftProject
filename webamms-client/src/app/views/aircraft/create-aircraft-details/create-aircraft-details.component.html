@@ -1,0 +1,160 @@
+<div class="animated fadeIn bg-white" style="max-width:100%;">
+  <div  class="card-header">
+     Sortie Flight Create
+  </div>
+  <div class="card-body">
+     <form  #aircraftform="ngForm" (ngSubmit)="saveAircraft()" novalidate>
+     <div class="row">
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group  ">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-sm"> Aircraft</span>
+                 </div>
+                 <input type="text" class="form-control" name="aircraft" uniqueAircraft  [(ngModel)]="aircraftinfo.aircraft" required   ngModel #aircraft="ngModel" aria-describedby="inputGroup-sizing-sm"  >
+              </div>
+              <div>            
+                 <span   class="text-danger" > {{msg}}</span>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Tail</span>
+                 </div>
+                 <input type="text" class="form-control" name="tail"  [(ngModel)]="aircraftinfo.tail" required>
+              </div>
+           </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Model</span>
+                 </div>
+                 <input type="text" class="form-control" name="model"  [(ngModel)]="aircraftinfo.model">
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">First_flight_date</span>
+                 </div>
+                 <input type="date" class="form-control" name="first_flight_date"  [(ngModel)]="aircraftinfo.first_flight_date">
+              </div>
+           </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Last_flown_date</span>
+                 </div>
+                 <input type="date" class="form-control" name="last_flown_date" [(ngModel)]="aircraftinfo.last_flown_date">
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Sortie_no</span>
+                 </div>
+                 <input type="text" class="form-control" name="sortie_no" [(ngModel)]="aircraftinfo.sortie_no" required>
+              </div>
+           </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Aircraft_status</span>
+                 </div>
+                 <select  name="select1" class="form-control"   name ="aircraft_status"   [(ngModel)]="aircraftinfo.aircraft_status" required >
+                 <option [ngValue]="null" selected disabled>select</option>
+                 <option value="Avaliable">Avaliable</option>
+                 <option value="AOG">AOG</option>
+                 <option value="Inspection">Inspection</option>
+                 </select>             
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Flight_cycle</span>
+                 </div>
+                 <input type="text" class="form-control" name="flight_cycle" [(ngModel)]="aircraftinfo.flight_cycle" required>
+              </div>
+           </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Engine_port_hrs</span>
+                 </div>
+                 <input type="time" class="form-control" name="engine_part_hrs" [(ngModel)]="aircraftinfo.engine_part_hrs" required>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Aarc</span>
+                 </div>
+                 <input type="time" class="form-control" name="aarc" [(ngModel)]="aircraftinfo.aarc" required> 
+              </div>
+           </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Engine_stbd_hrs</span>
+                 </div>
+                 <input type="time" class="form-control" name="engine_STBD_hrs" [(ngModel)]="aircraftinfo.engine_STBD_hrs" required>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Apu_cycle</span>
+                 </div>
+                 <input type="time" class="form-control" name="apu_cycle" [(ngModel)]="aircraftinfo.apu_cycle" required>
+              </div>
+           </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group">
+                 <div class="input-group-prepend">
+                    <span class="input-group-text">Apu_hrs</span>
+                 </div>
+                 <input type="time" class="form-control" name="apu_hrs" [(ngModel)]="aircraftinfo.apu_hrs" required>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <span class="input-group-text">Apu_c_cycle</span>
+                 <input type="time" class="form-control" name="apu_C_cycle" [(ngModel)]="aircraftinfo.apu_c_cycle" required>
+              </div>
+           </div>
+        </div>
+        <div class="form-group row">
+           <div class="col-md-6">
+              <div class="input-group">
+                 <span class="input-group-text">Apu_c_hrs</span>
+                 <input type="time" class="form-control" name="apu_C_hrs" [(ngModel)]="aircraftinfo.apu_c_hrs" required>
+              </div>
+           </div>
+           <div class="col-md-6">
+              <div class="input-group">
+                 <span class="input-group-text">Airflame_hrs</span>
+                 <input type="time" class="form-control" name="airflame_hours" [(ngModel)]="aircraftinfo.airflame_hours" required> 
+              </div>
+           </div>
+          
+        </div>
+        <div>
+           <button  class="btn btn-sm btn-primary"    type ="submit"  [disabled]="!aircraftform.valid" >Submit</button>
+        </div>
+     </div>
+     </form>
+  </div>

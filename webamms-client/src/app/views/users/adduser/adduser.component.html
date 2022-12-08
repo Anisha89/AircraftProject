@@ -1,0 +1,92 @@
+<div class="animated fadeIn" style="max-width:100%;">
+   <div class="row">
+      <div class="col-md-6 ">
+         <div class="card  ">
+            <div class="card-header">ADD USER</div>
+            <div class="card-body ">
+               <form  #addform="ngForm"  (ngSubmit)="adduser()">
+               <span class ="text-info"></span>
+               <div *ngIf="alert" class="alert-success alert-dismissible fade show" role="alert">
+                  User Registered Successfully !.
+                  <button (click)="closealert()"type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <div class="controls">
+                  <div class="input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-user"></i></span>
+                     </div>
+                     <input type="text" class="form-control" placeholder="Username" autocomplete="username" name="username" required [(ngModel)]="user.userName" (ngModelChange)= "user.userName = $event.toLowerCase()" id="username" ngModel #username="ngModel" required >
+                  </div>
+                  <div class="text-danger" *ngIf="username.invalid && (username.dirty || username.touched)">
+                     <div *ngIf="username.errors.required">Name is required.</div>
+                  </div>
+               </div>
+               <br>
+               <div class="controls">
+                  <div class="input-prepend input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-envelope"></i></span>
+                     </div>
+                     <input type="email"  class="form-control"  placeholder="Enter email" name="email" [(ngModel)]="user.emailId" required ngModel #email="ngModel" uniqueEmail
+                     required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"> 
+                  </div>
+                  <div class="text-danger" *ngIf="email.errors && (email.invalid || email.touched)">
+                     <div class="text-danger" *ngIf ="email.errors.pattern">Enter Valid Email id</div>
+                     <div class="text-danger" *ngIf ="email.errors['uniqueEmail']">Email already exist</div>
+                  </div>
+               </div>
+               <br>
+               <div class="controls">
+                  <div class="input-prepend input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                     </div>
+                     <input  [type]="show_button ? 'text' :'password' " class="form-control" placeholder="Password"   name="password"  passwordValidator  [(ngModel)]="user.password" ngModel #password="ngModel" required >
+                     <span class="input-group-text " style="width:40px">  <i [class]="show_eye ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="showPassword()" > </i></span>
+                  </div>
+                  <div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                     <div *ngIf="password.errors?.required">Password is required.</div>
+                     <div class="text-danger" *ngIf ="password.errors['passwordValidator']">Make sure it's at least 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character </div>
+                  </div>
+               </div>
+               <br>
+               <div class="controls">
+                  <div class="input-prepend input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                     </div>
+                     <input type="password" class="form-control" placeholder="Repeat password" ngModel #cpassword="ngModel" name="cpassword"  required  compare="password">
+                  </div>
+                  <div class="text-danger" *ngIf ="cpassword.invalid && (cpassword.dirty || cpassword.touched)">
+                     <div *ngIf="cpassword.errors['required']">Repeat Password is required</div>
+                     <div *ngIf="cpassword.errors['compare']">Password Confirm do not match</div>
+                  </div>
+               </div>
+               <br>
+               <div class="controls">
+                  <div class="input-prepend input-group">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="icon-lock"></i></span>
+                     </div>
+                     <select style='width:100px' id="roll" [(ngModel)]="user.roll" name="roll"   class="form-control" (change)="selectChangeHandler($event)">
+                     <option value="" selected disabled  >Enter roll</option>
+                     <option value="admin">Admin</option>
+                     <option value="viewer">Viewer</option>
+                     <option value="regular">Regular</option>
+                     </select>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <div class="col-6">
+                     <button type="submit" class="btn btn-primary "[ng2-loading]="show"  [config]="loadingConfig" [disabled]="!addform.valid" >Create </button>
+                  </div>
+               </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

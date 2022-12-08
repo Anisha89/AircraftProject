@@ -1,0 +1,50 @@
+
+
+td {
+  padding: 10px;
+  color: rgb(14, 1, 1);
+  font-size: large;
+  font-family: "Times New Roman", Times, serif;
+  column-width: auto;
+  height: 36px;
+  padding-top: 15px;
+  padding-bottom: 8px;
+  padding-right: 16px;
+  padding-left: 5px;
+  text-align: center;
+}
+th{
+  color: black;
+  font-size: medium;
+  font-family: "Times New Roman", Times, serif;
+}
+table {
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 100%;
+}
+.disable {
+  cursor: not-allowed;
+}
+
+.disable-whole-div__myDIV {
+  overflow: scroll;
+  height: 50px;
+  border: 1px solid #ccc;
+  margin: 10px;
+  width: 50px;
+  cursor: pointer;
+  position: relative;
+}
+
+.disable-whole-div__cover {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  background-color: #ddd;
+  opacity: 0.3;
+}
+img {
+  border-radius: 50%;
+}
